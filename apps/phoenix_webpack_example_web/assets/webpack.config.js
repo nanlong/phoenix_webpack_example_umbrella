@@ -1,16 +1,21 @@
-var path = require("path");
-var webpack = require("webpack");
-var CopyWebpackPlugin = require("copy-webpack-plugin");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const path = require("path");
+const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+
+const staticDir = path.join(__dirname, '.');
+const destDir = path.join(__dirname, '../priv/static');
+const publicPath = '/';
 
 module.exports = {
   entry: {
-    app: ["./css/app.css", "./js/app.js"]
+    app: [staticDir + "/css/app.css", staticDir + "/js/app.js"]
   },
   output: {
-    path: "../priv/static",
-    filename: "js/[name].js"
+    path: destDir,
+    filename: "js/[name].js",
+    publicPath
   },
   module: {
     loaders: [
